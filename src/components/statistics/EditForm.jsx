@@ -20,8 +20,8 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import {  Redirect, useParams } from "react-router";
-import {  updateCountry } from "../../actions";
+import { useParams } from "react-router";
+import { updateCountry } from "../../actions";
 
 function EditForm() {
   const actualDetail = useSelector((state) => state.detail);
