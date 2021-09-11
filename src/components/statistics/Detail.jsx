@@ -11,6 +11,7 @@ function Detail() {
   const country = useSelector((state) => state.detail);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const userToken = JSON.parse(localStorage.getItem("user")); 
   const { push } = useHistory();
 
   useEffect(() => {
@@ -20,11 +21,17 @@ function Detail() {
     };
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if(!userToken){
+      push("/")
+    }
+  }, [userToken])
+
   const goBack = () => {
     return push("/stats");
   };
 
-  return country ? (
+  return userToken && country ? (
     <>
       <Flex
         h="100vh"

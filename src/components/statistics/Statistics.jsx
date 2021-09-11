@@ -2,32 +2,48 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStatistic } from '../../actions'
 import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot, 
-    Tr,   
-    Th,   //  EDITAR DESDE EL DETALLE
-    Td,
-    Text,
+    Text, 
     Flex,
     Spinner
   } from "@chakra-ui/react"
 import Detail from './Detail';
 import StatTable from "./StatTable"
 import Header from "../header/Header";
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+import { useHistory } from 'react-router';
+
+
 
 function Statistics() {
+
+  const breakpoints = createBreakpoints({
+    sm: "320px",
+    md: "768px",
+    lg: "960px",
+    xl: "1200px",
+  })
+  
+  const userToken =  JSON.parse(localStorage.getItem("user"));
   const statistics = useSelector((state) => state.Statistics);
   const user = useSelector(state => state.loggedUser)
+  const { push } = useHistory();
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getStatistic());
-    console.log(user)
   }, [dispatch]);
 
-console.log(statistics)
+useEffect(() => {
+  const verify = async () => {
+    const userToken = await JSON.parse(localStorage.getItem("user"));
+    if(!userToken){
+      push("/")
+    }
+  }
+verify()
+}, [userToken])
+
 
 const Samerica = statistics.length > 0 && statistics.filter(stat => stat.continent === "South-America")
 const Namerica = statistics.length > 0 && statistics.filter(stat => stat.continent === "North-America")
@@ -44,9 +60,9 @@ const allStats = [Samerica,Namerica,Europe,Oceania,Asia,Africa]
       <>
  <Header/>
   
-{    statistics && statistics.length > 0 ?
+{userToken && statistics && statistics.length > 0 ?
     <>
-    <Flex pb="20" p="80px" bgColor="white" /* #0b090a */ h={"90vh"} flexDirection="row" alignItems="center" justifyContent="center" flexWrap="wrap">
+    <Flex  pb="20" p="80px" bgColor="white" /* #0b090a */ h={"90vh"} flexDirection={["column","column","column","row"]} alignItems="center" justifyContent="center" flexWrap={["nowrap","nowrap","nowrap","wrap"]}>
         {/* {statistics && statistics.map(e => <SingleStat country={e}/>) } */}
         {/* <SingleStat country={statistics[0]}/> */}
         {allStats.map( continent => <StatTable statistics={continent}/>)}

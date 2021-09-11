@@ -15,7 +15,7 @@ const user = useSelector(state => state.loggedUser)
 const userToken = JSON.parse(localStorage.getItem("user")); 
 const {push} = useHistory()
 const dispatch = useDispatch()
-const location = useLocation()
+const location = useLocation() //HACER RESPONSIVE, VERIFICAR UN USUARIO LOGUEADO, ESTILIZAR MEJOR, COMPONENTIZAR ESTILOS
 
 
 useEffect(() => {

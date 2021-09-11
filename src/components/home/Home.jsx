@@ -22,14 +22,10 @@ function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useSelector(state => state.loggedUser)
 
-useEffect(()=>{
-  console.log(user)
-},[user])
 
 
   return (
     <>
-    {user ? console.log("hay user", user): null}
       <Flex
         h={"100vh"}
         w={"100vw"}

@@ -30,7 +30,7 @@ const logout = () => {
         <header className={styles.header}>
         <img src={"https://i1.wp.com/mrsvg.com/wp-content/uploads/edd/2021/03/virus.png?w=363&ssl=1"} className={styles.img} alt="img not found" />
         <Text h="40" w="220" color="white" alignSelf="flex-start">
-            welcome {user.userResponse && user.userResponse.name} !
+            welcome {user.userResponse && user.userResponse.name || user.name} !
           </Text>
           <h1>
             <span>Covid-19 Stats</span>
