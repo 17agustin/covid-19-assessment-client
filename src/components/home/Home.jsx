@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getStatistic } from "../../actions";
-import {
-  Box,
-  Button,
-  Flex,
-  Text,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-} from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Login from "../login/Login";
 import Signup from "../signup/Signup";
+import { useHistory } from "react-router";
 
 function Home() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const user = useSelector(state => state.loggedUser)
+  const userToken = JSON.parse(localStorage.getItem("user"));
+  const { push } = useHistory();
 
-
+  useEffect(() => {
+    if (userToken) {
+      push("/stats");
+    }
+  }, [userToken]);
 
   return (
     <>
@@ -40,11 +30,10 @@ function Home() {
           </Text>
         </Box>
         <Box>
-          <Login  />
-          <Signup   />
+          <Login />
+          <Signup />
         </Box>
       </Flex>
-      {/* {login ? <Button onClick={()=>setLogin(false)}><Login/></Button> : null} */}
     </>
   );
 }

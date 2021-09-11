@@ -27,8 +27,7 @@ function EditForm() {
   const actualDetail = useSelector((state) => state.detail);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-
-  const toast = useToast()
+  const toast = useToast();
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -42,22 +41,22 @@ function EditForm() {
   const handleChange = (e) => {
     switch (e.target.name) {
       case "new":
-          setNewCases(e.target.value)
+        setNewCases(e.target.value);
         break;
       case "recovered":
-          setRecoveredCases(e.target.value)
+        setRecoveredCases(e.target.value);
         break;
       case "active":
-          setActiveCases(e.target.value)
+        setActiveCases(e.target.value);
         break;
       case "critical":
-          setCriticalCases(e.target.value)
+        setCriticalCases(e.target.value);
         break;
       case "deaths":
-          setDeaths(e.target.value)
+        setDeaths(e.target.value);
         break;
       case "tests":
-          setTests(e.target.value)
+        setTests(e.target.value);
         break;
       default:
         break;
@@ -81,12 +80,12 @@ function EditForm() {
       tests: tests || actualDetail.tests.total,
     };
     dispatch(updateCountry(id, detailToUpdate));
-     toast({
-         title: "updating",
-         status: "success"
-     })
-     setTimeout(onClose,1000)
-     setTimeout(window.location.reload(),1500)
+    toast({
+      title: "updating",
+      status: "success",
+    });
+    setTimeout(onClose, 1000);
+    setTimeout(window.location.reload(), 1500);
   };
 
   return (

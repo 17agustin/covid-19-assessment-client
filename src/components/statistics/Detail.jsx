@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Flex, Text, Spinner, Stack, Button, Input } from "@chakra-ui/react";
-import { ArrowBackIcon, EditIcon } from "@chakra-ui/icons";
+import React from "react";
+import { Flex, Text, Spinner, Stack, Button } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ function Detail() {
   const country = useSelector((state) => state.detail);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const userToken = JSON.parse(localStorage.getItem("user")); 
+  const userToken = JSON.parse(localStorage.getItem("user"));
   const { push } = useHistory();
 
   useEffect(() => {
@@ -22,16 +22,16 @@ function Detail() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    if(!userToken){
-      push("/")
+    if (!userToken) {
+      push("/");
     }
-  }, [userToken])
+  }, [userToken]);
 
   const goBack = () => {
     return push("/stats");
   };
 
-  return userToken && country ? (
+  return country ? (
     <>
       <Flex
         h="100vh"
@@ -45,7 +45,7 @@ function Detail() {
           borderRadius="full"
           alignSelf="center"
           justifySelf="center"
-          colorScheme="red"
+          colorScheme="blue"
         >
           <ArrowBackIcon />
         </Button>
@@ -60,7 +60,7 @@ function Detail() {
           boxShadow="2xl"
         >
           <Flex
-            bgColor="#a4161a"
+            bgColor="#61a5c2"
             borderRadius="xl"
             flexDirection="column"
             justifyContent="space-between"

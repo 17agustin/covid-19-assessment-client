@@ -1,11 +1,6 @@
 import {
   GET_ALL_STATISTICS,
-  GET_ALL_COUNTRYS,
-  UPDATE,
-  RESET_STATISTICS,
   LOGIN,
-  LOGGED_USER,
-  ORDER,
   DETAIL,
   SEARCH_QUERY,
   SYNC,
@@ -16,7 +11,7 @@ const initialState = {
   Statistics: [],
   Countries: [],
   loggedUser: {},
-  detail: null
+  detail: null,
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
