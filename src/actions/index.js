@@ -119,3 +119,14 @@ export const cleanDetail = () =>{
     dispatch({type:DETAIL, payload:null})
   }
 }
+
+export const updateCountry = (id, country) => {
+  return async (dispatch)=>{
+    const response = await axios.post(`${BASE_URL}/statistics/${id}`,country,{
+      headers:{
+        authorization: `${userToken}`
+      }
+    })
+    dispatch({type:DETAIL, payload:response.data})
+  }
+}

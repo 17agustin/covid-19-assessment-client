@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import { Flex,
-   Text,
-   Spinner,
-   Stack,
-   Button,
-   Input
- } from "@chakra-ui/react";
+import { Flex, Text, Spinner, Stack, Button, Input } from "@chakra-ui/react";
 import { ArrowBackIcon, EditIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,14 +12,13 @@ function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { push } = useHistory();
-  const [edit, setEdit] = useState(false)
 
   useEffect(() => {
     dispatch(detail(id));
     return () => {
       dispatch(cleanDetail());
     };
-  }, [id]);
+  }, [dispatch, id]);
 
   const goBack = () => {
     return push("/stats");
@@ -59,7 +52,6 @@ function Detail() {
           flexDirection="column"
           boxShadow="2xl"
         >
-
           <Flex
             bgColor="#a4161a"
             borderRadius="xl"
@@ -68,12 +60,17 @@ function Detail() {
             alignItems="center"
           >
             <Stack direction={["row"]} shouldWrapChildren>
-            <Text justifySelf="flex-start" fontSize="lg" fontWeight="bold" color="black" fontSize="3xl">
-              {country.continent} - {country.country}
-            </Text>
+              <Text
+                justifySelf="flex-start"
+                fontSize="lg"
+                fontWeight="bold"
+                color="black"
+                fontSize="3xl"
+              >
+                {country.continent} - {country.country}
+              </Text>
 
-            <EditForm/>
-
+              <EditForm />
             </Stack>
             <Stack direction={["row"]} spacing="180px">
               <Text
@@ -123,7 +120,6 @@ function Detail() {
                   <Text fontWeight="semibold">
                     Total: {country.cases.total || "any"}{" "}
                   </Text>
-
                 </Stack>
               </Flex>
             </Flex>

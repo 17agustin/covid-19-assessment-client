@@ -9,83 +9,88 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
+  Stack,
   Text,
-  Input,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  useToast,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
-import { login } from "../../actions";
+import {  Redirect, useParams } from "react-router";
+import {  updateCountry } from "../../actions";
 
 function EditForm() {
-
-  const actualDetail = useSelector(state => state.detail)
+  const actualDetail = useSelector((state) => state.detail);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const initialRef = React.useRef();
-  const finalRef = React.useRef();
 
+  const toast = useToast()
   const dispatch = useDispatch();
-  const { push } = useHistory();
+  const { id } = useParams();
 
-  const [input, setInput] = useState({
-    cases: {
-      new: null,
-      recovered: null,
-      critical: null,
-      active: null,
-    },
-    deaths: null,
-    tests: null,
-  });
+  const [newCases, setNewCases] = useState(0);
+  const [activeCases, setActiveCases] = useState(0);
+  const [recoveredCases, setRecoveredCases] = useState(0);
+  const [criticalCases, setCriticalCases] = useState(0);
+  const [deaths, setDeaths] = useState(0);
+  const [tests, setTests] = useState(0);
 
   const handleChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case "new":
+          setNewCases(e.target.value)
+        break;
+      case "recovered":
+          setRecoveredCases(e.target.value)
+        break;
+      case "active":
+          setActiveCases(e.target.value)
+        break;
+      case "critical":
+          setCriticalCases(e.target.value)
+        break;
+      case "deaths":
+          setDeaths(e.target.value)
+        break;
+      case "tests":
+          setTests(e.target.value)
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSubmit = (e) => {
-    e.preventDefaul();
+    e.preventDefault();
     const detailToUpdate = {
-        cases:{
-            new: input.cases.new || actualDetail.cases.new,
-            active: input.cases.active || actualDetail.cases.active,
-            recovered: input.cases.recovered || actualDetail.cases.recovered,
-            critical: input.cases.critical || actualDetail.cases.critical,
-            total: actualDetail.cases.total + (input.cases.new || 0)
-        },
-        deaths:{
-            new: input.deaths || actualDetail.deaths.new,
-            total: actualDetail.deaths.total + input.deaths
-        },
-        tests: input.tests || actualDetail.tests.total
-    }
-    return console.log("dale river plateeee");
+      cases: {
+        new: `+${newCases}` || actualDetail.cases.new,
+        active: activeCases || actualDetail.cases.active,
+        recovered: recoveredCases || actualDetail.cases.recovered,
+        critical: criticalCases || actualDetail.cases.critical,
+        total: parseInt(actualDetail.cases.total) + parseInt(newCases),
+      },
+      deaths: {
+        new: `+${deaths}` || actualDetail.deaths.new,
+        total: parseInt(actualDetail.deaths.total) + parseInt(deaths),
+      },
+      tests: tests || actualDetail.tests.total,
+    };
+    dispatch(updateCountry(id, detailToUpdate));
+     toast({
+         title: "updating",
+         status: "success"
+     })
+     setTimeout(onClose,1000)
+     setTimeout(window.location.reload(),1500)
   };
 
   return (
     <>
-{/* {   
-    "deaths":{
-        "new":"+22",
-        "total":"23"
-    },
-    "cases":{
-        "new":"+22",
-        "active":12,
-        "recovered":33,
-        "critical":2,
-        "total": 333
-    },
-        "tests": "23"
-} */}
       <Button
         onClick={onOpen}
         color="black"
@@ -100,43 +105,70 @@ function EditForm() {
       <Modal isOpen={isOpen} onClose={onClose} colorScheme="blue">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Login !</ModalHeader>
+          <ModalHeader>Update this stats!</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <form onChange={(e) => handleChange(e)} onSubmit={handleSubmit}>
-              <Text>Cases</Text>
-              <NumberInput min={0} size="sm" w="120px" >
-                <NumberInputField name="cases_active" placeholder="how many" />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <FormControl isRequired>
-                <FormLabel>active</FormLabel>
-                <Input
-                  type="number"
-                  name="cases_active"
-                  ref={initialRef}
-                  placeholder="active"
-                />
-              </FormControl>
-              <FormControl mt={4} isRequired>
-                <FormLabel>critical</FormLabel>
-                <Input
-                  name="text"
-                  type="cases_critical"
-                  placeholder="critical"
-                />
-              </FormControl>
-              <FormControl mt={4} isRequired>
-                <FormLabel>new</FormLabel>
-                <Input name="new" type="text" placeholder="new" />
-              </FormControl>
-              <FormControl mt={4} isRequired>
-                <FormLabel>recovered</FormLabel>
-                <Input name="recovered" type="text" placeholder="recovered" />
-              </FormControl>
+              <Stack
+                h="500px"
+                shouldWrapChildren
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <Text>new cases</Text>
+                <NumberInput name="new" min="0" w="150px">
+                  <NumberInputField placeholder="how many" />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+
+                <Text>recovered cases</Text>
+                <NumberInput name="recovered" min="0" w="150px">
+                  <NumberInputField placeholder="how many" />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+
+                <Text>active cases</Text>
+                <NumberInput name="active" min="0" w="150px">
+                  <NumberInputField placeholder="how many" />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+
+                <Text>critical cases</Text>
+                <NumberInput name="critical" min="0" w="150px">
+                  <NumberInputField placeholder="how many" />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+
+                <Text>deaths</Text>
+                <NumberInput name="deaths" min="0" w="150px">
+                  <NumberInputField placeholder="how many" />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+
+                <Text>tests</Text>
+                <NumberInput name="tests" min="0" w="150px">
+                  <NumberInputField placeholder="how many" />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </Stack>
             </form>
           </ModalBody>
           <ModalFooter>
@@ -146,10 +178,7 @@ function EditForm() {
               mr={3}
               onClick={handleSubmit}
             >
-              Login
-            </Button>
-            <Button variant="solid" colorScheme="red" onClick={onClose}>
-              cancel
+              Update
             </Button>
           </ModalFooter>
         </ModalContent>
