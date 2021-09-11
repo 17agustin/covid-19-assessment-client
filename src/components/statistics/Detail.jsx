@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { Flex, Text, Spinner, Stack, Button, Input } from "@chakra-ui/react";
+import { Flex,
+   Text,
+   Spinner,
+   Stack,
+   Button,
+   Input
+ } from "@chakra-ui/react";
 import { ArrowBackIcon, EditIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { cleanDetail, detail } from "../../actions";
+import EditForm from "./EditForm";
 
 function Detail() {
   const country = useSelector((state) => state.detail);
@@ -64,9 +71,9 @@ function Detail() {
             <Text justifySelf="flex-start" fontSize="lg" fontWeight="bold" color="black" fontSize="3xl">
               {country.continent} - {country.country}
             </Text>
-            <Button color="black" colorScheme="blackAlpha" justifySelf="flex-end" variant="ghost" borderRadius="full" size="lg">
-            <EditIcon/>
-          </Button>
+
+            <EditForm/>
+
             </Stack>
             <Stack direction={["row"]} spacing="180px">
               <Text
