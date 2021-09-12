@@ -13,15 +13,8 @@ import {
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { detail } from "../../actions";
-import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 function StatTable({ statistics }) {
-  const breakpoints = createBreakpoints({
-    sm: "320px",
-    md: "768px",
-    lg: "960px",
-    xl: "1200px",
-  });
 
   const headers = ["Country", "Cases", "Deaths", "Tests"];
   const dispatch = useDispatch();
@@ -35,8 +28,9 @@ function StatTable({ statistics }) {
   return (
     <>
       <Flex
-        w={["80vw", "80vw", "80vw", "35vw"]}
+        w={["300px", "320px", "500px", "500px"]}
         flexDirection="column"
+        alignItems="center"
         borderRadius="2xl"
         m="10"
         pb="5"
@@ -46,7 +40,7 @@ function StatTable({ statistics }) {
         <Badge
           variant="solid"
           bgColor="#023e8a"
-          w={["80vw", "80vw", "80vw", "35vw"]}
+          w={["300px", "320px", "500px", "500px"]}
           borderRadius="10px"
           p="4"
           textAlign="center"
@@ -55,14 +49,13 @@ function StatTable({ statistics }) {
           {statistics[0].continent}
         </Badge>
         <Flex
-          overflowX="hidden"
+          overflowX={["scroll","scroll","hidden","hidden"]}
           h="50vh"
           overflowY="scroll"
-          w={["80vw", "80vw", "80vw", "35vw"]}
+          w={["300px", "320px", "500px", "500px"]}
           flexDirection="column"
-          alignItems="center"
         >
-          <Table variant="simple" colorScheme="blackAlpha">
+          <Table  variant="simple" colorScheme="blackAlpha" size="sm">
             <Thead>
               <Tr>
                 {headers.map((h) => (

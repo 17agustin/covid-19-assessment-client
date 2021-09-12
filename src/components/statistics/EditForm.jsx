@@ -17,6 +17,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   useToast,
+  Flex,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -89,7 +90,7 @@ function EditForm() {
   };
 
   return (
-    <>
+    <Flex w="100px">
       <Button
         onClick={onOpen}
         color="black"
@@ -182,7 +183,7 @@ function EditForm() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Flex>
   );
 }
 

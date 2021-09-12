@@ -25,7 +25,7 @@ function SearchBar() {
   };
 
   return (
-    <Flex flexDirection="column" alignItems="center" justifyContent="center">
+    <Flex ml="5" pr="10"  flexDirection="column" alignItems="center" justifyContent="center">
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex>
           <Input
@@ -36,7 +36,6 @@ function SearchBar() {
           />
           <Button
             type="submit"
-            w={"60px"}
             float="right"
             bgColor="transparent"
             _hover={{ backgroundColor: "transparent" }}

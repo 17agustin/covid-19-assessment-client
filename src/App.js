@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { autoLog } from "./actions";
 import axios from "axios";
+import { myNewTheme } from "./styles/theme";
 
 function App() {
   const user = useSelector((state) => state.loggedUser);
@@ -30,15 +31,15 @@ function App() {
       }
     };
     fn();
-  }, []);
+  }, [dispatch, userToken]);
 
   return (
     <>
-      <ChakraProvider>
+      <ChakraProvider theme={myNewTheme}>
         <Switch>
           <Route exact path="/" component={Home} />
           <>
-            {user ? (
+            {user || userToken ? (
               <>
                 <Switch>
                   <Route exact path="/stats" component={Statistics} />

@@ -7,7 +7,9 @@ import { useHistory, useParams } from "react-router-dom";
 import { cleanDetail, detail } from "../../actions";
 import EditForm from "./EditForm";
 
+
 function Detail() {
+
   const country = useSelector((state) => state.detail);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ function Detail() {
         </Button>
         <Flex
           bgColor="#f5f3f4"
-          w={"50vw"}
+          w={["90vw","80vw","70vw","50vw"]}
           borderWidth="medium"
           borderRadius="2xl"
           border={"solid"}
@@ -66,20 +68,19 @@ function Detail() {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Stack direction={["row"]} shouldWrapChildren>
+            <Stack direction={["column","column","column","row"]} alignItems={["center","center","space-around","center"]}  >
               <Text
                 justifySelf="flex-start"
-                fontSize="lg"
                 fontWeight="bold"
                 color="black"
-                fontSize="3xl"
+                fontSize="3x1"
               >
                 {country.continent} - {country.country}
               </Text>
 
               <EditForm />
             </Stack>
-            <Stack direction={["row"]} spacing="180px">
+            <Stack direction={["column","column","column","row"]} spacing={["20px","20px","20px","180px"]}>
               <Text
                 fontSize="lg"
                 fontWeight="bold"
@@ -108,7 +109,7 @@ function Detail() {
                 Cases
               </Text>
               <Flex alignItems="center" justifyContent="space-around">
-                <Stack>
+                <Stack >
                   <Text fontWeight="semibold">
                     New: {country.cases.new || "any"}{" "}
                   </Text>
@@ -143,7 +144,7 @@ function Detail() {
                 <Text fontWeight="semibold">
                   New: {country.deaths.new || " any"}
                 </Text>
-                <Text fontWeight="semibold">Total: {country.deaths.total}</Text>
+                <Text fontWeight="semibold">Total: {country.deaths.total || "any"}</Text>
               </Stack>
             </Flex>
             <Flex

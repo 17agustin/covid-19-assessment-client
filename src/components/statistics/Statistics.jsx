@@ -66,7 +66,7 @@ function Statistics() {
             pb="20"
             p="80px"
             bgColor="white"
-            h={"90vh"}
+            w={["140vw","120vw","120vw","100vw"]}
             flexDirection={["column", "column", "column", "row"]}
             alignItems="center"
             justifyContent="center"
