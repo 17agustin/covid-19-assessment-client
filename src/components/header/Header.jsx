@@ -13,13 +13,8 @@ import {   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
-  MenuDivider,} from "@chakra-ui/react";
-import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
+} from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 function Header() {
   const user = useSelector((state) => state.loggedUser);
@@ -61,25 +56,25 @@ function Header() {
         /* display={["none",,,"flex"]} */
       />
       
-      <Text display={["none",,,"flex"]} fontSize="x-large" color="white" alignSelf="center">
+      <Text display={["none",null,null,"flex"]} fontSize="x-large" color="white" alignSelf="center">
         welcome {(user.userResponse && user.userResponse.name) || user.name} !
       </Text>
       <Text color="white"  fontSize={["medium","large","x-large","x-large"]} letterSpacing="wider">
         Covid-19 Stats
       </Text>
       
-      <Stack display={["none",,,"flex"]} direction={["row"]} spacing="80px">
+      <Stack display={["none",null,null,"flex"]} direction={["row"]} spacing="80px">
         <Button onClick={logout}>Logout</Button>
         <Button onClick={syncUp}>Sync</Button>
       <SearchBar />
       </Stack>
-      <Flex display={["flex",,,"none"]} justifyContent="space-between">
+      <Flex display={["flex",null,null,"none"]} justifyContent="space-between">
         <Menu>
         <MenuButton as={IconButton} icon={<HamburgerIcon />}>
         </MenuButton>
           <MenuList>
-              <MenuItem><Button onClick={logout}>Logout</Button></MenuItem>
-              <MenuItem><Button onClick={syncUp}>Sync</Button></MenuItem>
+              <MenuItem onClick={logout}> Logout</MenuItem>
+              <MenuItem onClick={syncUp}> Sync</MenuItem>
            </MenuList>
         </Menu>
         <SearchBar />

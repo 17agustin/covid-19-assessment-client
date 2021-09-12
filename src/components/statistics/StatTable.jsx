@@ -59,14 +59,14 @@ function StatTable({ statistics }) {
             <Thead>
               <Tr>
                 {headers.map((h) => (
-                  <Th>{h}</Th>
+                  <Th key={h}>{h}</Th>
                 ))}
               </Tr>
             </Thead>
             <Tbody>
               {statistics.length > 0
                 ? statistics.map((stat) => (
-                    <Tr>
+                    <Tr key={stat.country}>
                       <Td>
                         <Button
                           value={stat._id}

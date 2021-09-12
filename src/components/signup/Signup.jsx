@@ -21,7 +21,6 @@ import { login } from "../../actions";
 function Signin() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef();
-  const finalRef = React.useRef();
 
   const dispatch = useDispatch();
   const { push } = useHistory();
@@ -47,7 +46,7 @@ function Signin() {
     if(error.email || error.password){
       return alert("should fill the input correctly")
     }else{
-    const response = await axios.post("http://localhost:3001/api/auth/signup",input)
+    /* const response = */ await axios.post("http://localhost:3001/api/auth/signup",input)
     const user = {
       email: input.email,
       password: input.password

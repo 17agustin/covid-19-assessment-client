@@ -4,16 +4,10 @@ import { getStatistic } from "../../actions";
 import { Text, Flex, Spinner } from "@chakra-ui/react";
 import StatTable from "./StatTable";
 import Header from "../header/Header";
-import { createBreakpoints } from "@chakra-ui/theme-tools";
 import { useHistory } from "react-router";
 
 function Statistics() {
-  const breakpoints = createBreakpoints({
-    sm: "320px",
-    md: "768px",
-    lg: "960px",
-    xl: "1200px",
-  });
+
 
   const userToken = JSON.parse(localStorage.getItem("user"));
   const statistics = useSelector((state) => state.Statistics);
@@ -29,11 +23,11 @@ function Statistics() {
     const verify = async () => {
       const userToken = await JSON.parse(localStorage.getItem("user"));
       if (!userToken) {
-        push("/");
+       return push("/");
       }
     };
     verify();
-  }, [userToken]);
+  }, [userToken,push]);
 
   const Samerica =
     statistics.length > 0 &&
@@ -72,8 +66,8 @@ function Statistics() {
             justifyContent="center"
             flexWrap={["nowrap", "nowrap", "nowrap", "wrap"]}
           >
-            {allStats.map((continent) => (
-              <StatTable statistics={continent} />
+            {allStats.map((continent,i) => (
+              <StatTable key={i} statistics={continent} />
             ))}
           </Flex>
         </>

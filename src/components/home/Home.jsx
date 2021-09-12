@@ -12,14 +12,14 @@ function Home() {
     if (userToken) {
       push("/stats");
     }
-  }, [userToken]);
+  }, [userToken,push]);
 
   return (
     <>
       <Flex
         h={"100vh"}
         w={"100vw"}
-        bgColor="#0b090a"
+        bgColor="#0b090a" 
         flexDirection="column"
         justifyContent={"center"}
         alignItems="center"

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { autoLog } from "./actions";
 import axios from "axios";
 import { myNewTheme } from "./styles/theme";
+import ErrorComponent from "./components/error/ErrorComponent";
 
 function App() {
   const user = useSelector((state) => state.loggedUser);
@@ -44,14 +45,7 @@ function App() {
                 <Switch>
                   <Route exact path="/stats" component={Statistics} />
                   <Route exact path="/detail/:id" component={Detail} />
-                  <Route
-                    path="/*"
-                    component={
-                      <>
-                        <h1>error page</h1>
-                      </>
-                    }
-                  />
+                  <Route path="/*" component={ErrorComponent} />
                 </Switch>
               </>
             ) : (

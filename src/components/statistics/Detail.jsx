@@ -27,7 +27,7 @@ function Detail() {
     if (!userToken) {
       push("/");
     }
-  }, [userToken]);
+  }, [userToken,push]);
 
   const goBack = () => {
     return push("/stats");
