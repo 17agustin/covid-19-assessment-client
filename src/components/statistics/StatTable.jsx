@@ -17,7 +17,6 @@ import { detail, getStatistic } from "../../actions";
 import { TABLE } from "../../styles/styleConstants";
 
 function StatTable({ statistics }) {
-
   const headers = ["Country", "Cases", "Deaths", "Tests"];
   const dispatch = useDispatch();
   const { push } = useHistory();
@@ -27,11 +26,11 @@ function StatTable({ statistics }) {
     return push("/detail/" + e.target.value);
   };
 
-  const reset = ()=>{
-    dispatch(getStatistic())
-  }
+  const reset = () => {
+    dispatch(getStatistic());
+  };
 
-  return ( statistics.length > 0 ?
+  return statistics.length > 0 ? (
     <>
       <Flex
         w={TABLE.width}
@@ -52,7 +51,10 @@ function StatTable({ statistics }) {
           textAlign="center"
           fontSize="3xl"
         >
-          {statistics[0].continent === statistics[statistics.length - 1].continent ? statistics[0].continent : "search results"}
+          {statistics[0].continent ===
+          statistics[statistics.length - 1].continent
+            ? statistics[0].continent
+            : "search results"}
         </Badge>
         <Flex
           overflowX={TABLE.scroll}
@@ -61,7 +63,7 @@ function StatTable({ statistics }) {
           w={TABLE.width}
           flexDirection="column"
         >
-          <Table  variant="simple" colorScheme="blackAlpha" size="sm">
+          <Table variant="simple" colorScheme="blackAlpha" size="sm">
             <Thead>
               <Tr>
                 {headers.map((h) => (
@@ -94,17 +96,14 @@ function StatTable({ statistics }) {
         </Flex>
       </Flex>
     </>
-      :
-      <Flex alignItems="center" flexDirection="column">
-        <Heading>
-          oops! No Result for that search
-        </Heading>
-        <Button mt="10" w="60px" onClick={reset}>
-          Reset
-        </Button>
-      </Flex>
+  ) : (
+    <Flex alignItems="center" flexDirection="column">
+      <Heading>oops! No Result for that search</Heading>
+      <Button mt="10" w="60px" onClick={reset}>
+        Reset
+      </Button>
+    </Flex>
   );
-
 }
 
 export default StatTable;

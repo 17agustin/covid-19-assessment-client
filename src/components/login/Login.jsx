@@ -60,10 +60,7 @@ function Login() {
       email: email,
       password: password,
     };
-    const response = await axios.post(
-      "/auth/login",
-      user
-    );
+    const response = await axios.post("/auth/login", user);
     if (response.data.msg)
       return toast({
         title: "Error",

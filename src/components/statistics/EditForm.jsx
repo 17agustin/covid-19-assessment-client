@@ -40,10 +40,11 @@ function EditForm() {
   const [tests, setTests] = useState(0);
 
   const handleChange = (e) => {
-    if(e.target.value < 0){
-      var value = 0
-    }else{
-    value = e.target.value}
+    if (e.target.value < 0) {
+      var value = 0;
+    } else {
+      value = e.target.value;
+    }
     switch (e.target.name) {
       case "new":
         setNewCases(value);
@@ -112,7 +113,10 @@ function EditForm() {
           <ModalHeader>Update this stats!</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <form onChange={(e) => handleChange(e)} onSubmit={e => handleSubmit(e)}>
+            <form
+              onChange={(e) => handleChange(e)}
+              onSubmit={(e) => handleSubmit(e)}
+            >
               <Stack
                 h="500px"
                 shouldWrapChildren

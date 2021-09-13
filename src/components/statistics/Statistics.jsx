@@ -16,10 +16,10 @@ function Statistics() {
 
   useEffect(() => {
     dispatch(getStatistic());
-    return (()=>{
-      dispatch(clearStatistics())
-    })
-  }, [dispatch,userToken]);
+    return () => {
+      dispatch(clearStatistics());
+    };
+  }, [dispatch, userToken]);
 
   useEffect(() => {
     const verify = async () => {

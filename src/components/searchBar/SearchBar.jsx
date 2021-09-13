@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
-  const dispatch = useDispatch()
-  const toast = useToast()
+  const dispatch = useDispatch();
+  const toast = useToast();
 
   const handleChange = (e) => {
     setQuery((query) => (query = e.target.value));
@@ -15,24 +15,30 @@ function SearchBar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query === "") return toast({
-      title:"error",
-      description:"you must fill the input",
-      isClosable:true,
-      status:"error"
-    });
+    if (query === "")
+      return toast({
+        title: "error",
+        description: "you must fill the input",
+        isClosable: true,
+        status: "error",
+      });
     toast({
-      title:"success",
-      isClosable:true,
-      status:"success"
-    })
+      title: "success",
+      isClosable: true,
+      status: "success",
+    });
     setQuery("");
-   return dispatch(search(query))
-    
+    return dispatch(search(query));
   };
 
   return (
-    <Flex ml="5" pr="10"  flexDirection="column" alignItems="center" justifyContent="center">
+    <Flex
+      ml="5"
+      pr="10"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex>
           <Input

@@ -1,5 +1,4 @@
 import { Switch, Route, Redirect } from "react-router";
-import "./App.css";
 import Home from "./components/home/Home";
 import Statistics from "./components/statistics/Statistics";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -19,14 +18,11 @@ function App() {
   useEffect(() => {
     const fn = async () => {
       if (userToken !== null) {
-        const response = await axios.get(
-          "/api/auth/login",
-          {
-            headers: {
-              Authorization: `${userToken}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/auth/login", {
+          headers: {
+            Authorization: `${userToken}`,
+          },
+        });
         dispatch(autoLog(response.data));
       }
     };
