@@ -20,7 +20,7 @@ function App() {
     const fn = async () => {
       if (userToken !== null) {
         const response = await axios.get(
-          "http://localhost:3001/api/auth/login",
+          "/api/auth/login",
           {
             headers: {
               Authorization: `${userToken}`,
