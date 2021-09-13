@@ -19,7 +19,7 @@ function Statistics() {
     return (()=>{
       dispatch(clearStatistics())
     })
-  }, [dispatch]);
+  }, [dispatch,userToken]);
 
   useEffect(() => {
     const verify = async () => {

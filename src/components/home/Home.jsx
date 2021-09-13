@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Login from "../login/Login";
 import Signup from "../signup/Signup";
 import { useHistory } from "react-router";

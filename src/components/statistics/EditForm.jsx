@@ -40,24 +40,28 @@ function EditForm() {
   const [tests, setTests] = useState(0);
 
   const handleChange = (e) => {
+    if(e.target.value < 0){
+      var value = 0
+    }else{
+    value = e.target.value}
     switch (e.target.name) {
       case "new":
-        setNewCases(e.target.value);
+        setNewCases(value);
         break;
       case "recovered":
-        setRecoveredCases(e.target.value);
+        setRecoveredCases(value);
         break;
       case "active":
-        setActiveCases(e.target.value);
+        setActiveCases(value);
         break;
       case "critical":
-        setCriticalCases(e.target.value);
+        setCriticalCases(value);
         break;
       case "deaths":
-        setDeaths(e.target.value);
+        setDeaths(value);
         break;
       case "tests":
-        setTests(e.target.value);
+        setTests(value);
         break;
       default:
         break;
@@ -108,7 +112,7 @@ function EditForm() {
           <ModalHeader>Update this stats!</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <form onChange={(e) => handleChange(e)} onSubmit={handleSubmit}>
+            <form onChange={(e) => handleChange(e)} onSubmit={e => handleSubmit(e)}>
               <Stack
                 h="500px"
                 shouldWrapChildren

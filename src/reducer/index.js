@@ -6,7 +6,7 @@ import {
   SYNC,
   LOGOUT,
   CLEAR_STATISTICS,
-} from "../actions/index";
+} from "../constants/constants"
 
 const initialState = {
   statistics: [],

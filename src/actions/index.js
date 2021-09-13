@@ -1,18 +1,20 @@
 import axios from "axios";
-export const GET_ALL_STATISTICS = "GET_ALL_STATISTICS";
-export const SYNC = "RESET_STATISTICS";
-export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
-export const DETAIL = "DETAIL";
-export const SEARCH_QUERY = "SEARCH_QUERY";
-export const CLEAR_STATISTICS = "CLEAR_STATISTICS";
-export const BASE_URL = "http://localhost:3001/api";
+import {
+  BASE_URL,
+  CLEAR_STATISTICS,
+  DETAIL,
+  GET_ALL_STATISTICS,
+  LOGIN,
+  LOGOUT,
+  SEARCH_QUERY,
+  SYNC,
+} from "../constants/constants";
 
 const userToken = JSON.parse(localStorage.getItem("user"));
 
 export const getStatistic = () => {
   return async (dispatch) => {
-    const response = await axios.get(`${BASE_URL}/statistics`, {
+    const response = await axios.get(`/statistics`, {
       headers: {
         authorization: `${userToken}`,
       },
@@ -23,7 +25,7 @@ export const getStatistic = () => {
 
 export const login = (user) => {
   return async (dispatch) => {
-    const response = await axios.post(`${BASE_URL}/auth/login`, user);
+    const response = await axios.post(`/auth/login`, user);
     const userToken = JSON.parse(localStorage.getItem("user"));
     if (!userToken)
       response &&
@@ -51,7 +53,7 @@ export const logOut = () => {
 
 export const search = (query) => {
   return async (dispatch) => {
-    const response = await axios.get(`${BASE_URL}/statistics?query=${query}`, {
+    const response = await axios.get(`/statistics?query=${query}`, {
       headers: {
         authorization: `${userToken}`,
       },
@@ -62,7 +64,7 @@ export const search = (query) => {
 
 export const sync = () => {
   return async (dispatch) => {
-    const response = await axios.get(`${BASE_URL}/sync`, {
+    const response = await axios.get(`/sync`, {
       headers: {
         authorization: `${userToken}`,
       },
@@ -73,7 +75,7 @@ export const sync = () => {
 
 export const detail = (id) => {
   return async (dispatch) => {
-    const response = await axios.get(`${BASE_URL}/statistics/${id}`, {
+    const response = await axios.get(`/statistics/${id}`, {
       headers: {
         authorization: `${userToken}`,
       },
@@ -90,7 +92,7 @@ export const cleanDetail = () => {
 
 export const updateCountry = (id, country) => {
   return async (dispatch) => {
-    const response = await axios.post(`${BASE_URL}/statistics/${id}`, country, {
+    const response = await axios.post(`/statistics/${id}`, country, {
       headers: {
         authorization: `${userToken}`,
       },
