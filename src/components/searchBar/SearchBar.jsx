@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Flex, Input, Button } from "@chakra-ui/react";
+import { Flex, Input, Button, useToast } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { search } from "../../actions";
+import { useDispatch } from "react-redux";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
-  const { push } = useHistory();
+  const dispatch = useDispatch()
+  const toast = useToast()
 
   const handleChange = (e) => {
     setQuery((query) => (query = e.target.value));
@@ -14,14 +15,20 @@ function SearchBar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query === "") return alert("country not found");
-    const id = await search(query);
-    if (id.msg) {
-      setQuery("");
-      return alert("Country not found");
-    }
-    push(`detail/${id}`);
+    if (query === "") return toast({
+      title:"error",
+      description:"you must fill the input",
+      isClosable:true,
+      status:"error"
+    });
+    toast({
+      title:"success",
+      isClosable:true,
+      status:"success"
+    })
     setQuery("");
+   return dispatch(search(query))
+    
   };
 
   return (

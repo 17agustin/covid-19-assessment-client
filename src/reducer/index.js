@@ -5,11 +5,11 @@ import {
   SEARCH_QUERY,
   SYNC,
   LOGOUT,
+  CLEAR_STATISTICS,
 } from "../actions/index";
 
 const initialState = {
-  Statistics: [],
-  Countries: [],
+  statistics: [],
   loggedUser: {},
   detail: null,
 };
@@ -19,7 +19,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case GET_ALL_STATISTICS:
       return {
         ...state,
-        Statistics: payload,
+        statistics: payload,
       };
     case LOGIN:
       return {
@@ -34,17 +34,22 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case SEARCH_QUERY:
       return {
         ...state,
-        Statistics: payload,
+        statistics: payload,
       };
     case SYNC:
       return {
         ...state,
-        Statistics: payload,
+        statistics: payload,
       };
     case DETAIL:
       return {
         ...state,
         detail: payload,
+      };
+    case CLEAR_STATISTICS:
+      return {
+        ...state,
+        statistics: payload,
       };
     default:
       return state;

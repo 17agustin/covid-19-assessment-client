@@ -9,10 +9,12 @@ import {
   Flex,
   Badge,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { detail } from "../../actions";
+import { detail, getStatistic } from "../../actions";
+import { TABLE } from "../../styles/styleConstants";
 
 function StatTable({ statistics }) {
 
@@ -25,10 +27,14 @@ function StatTable({ statistics }) {
     return push("/detail/" + e.target.value);
   };
 
-  return (
+  const reset = ()=>{
+    dispatch(getStatistic())
+  }
+
+  return ( statistics.length > 0 ?
     <>
       <Flex
-        w={["300px", "320px", "500px", "500px"]}
+        w={TABLE.width}
         flexDirection="column"
         alignItems="center"
         borderRadius="2xl"
@@ -40,19 +46,19 @@ function StatTable({ statistics }) {
         <Badge
           variant="solid"
           bgColor="#023e8a"
-          w={["300px", "320px", "500px", "500px"]}
+          w={TABLE.width}
           borderRadius="10px"
           p="4"
           textAlign="center"
           fontSize="3xl"
         >
-          {statistics[0].continent}
+          {statistics[0].continent === statistics[statistics.length - 1].continent ? statistics[0].continent : "search results"}
         </Badge>
         <Flex
-          overflowX={["scroll","scroll","hidden","hidden"]}
+          overflowX={TABLE.scroll}
           h="50vh"
           overflowY="scroll"
-          w={["300px", "320px", "500px", "500px"]}
+          w={TABLE.width}
           flexDirection="column"
         >
           <Table  variant="simple" colorScheme="blackAlpha" size="sm">
@@ -88,7 +94,17 @@ function StatTable({ statistics }) {
         </Flex>
       </Flex>
     </>
+      :
+      <Flex alignItems="center" flexDirection="column">
+        <Heading>
+          oops! No Result for that search
+        </Heading>
+        <Button mt="10" w="60px" onClick={reset}>
+          Reset
+        </Button>
+      </Flex>
   );
+
 }
 
 export default StatTable;

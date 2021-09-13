@@ -15,7 +15,6 @@ function App() {
   const user = useSelector((state) => state.loggedUser);
   const userToken = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
-  //HACER RESPONSIVE, COMPONENTIZAR ESTILOS
 
   useEffect(() => {
     const fn = async () => {
@@ -52,7 +51,6 @@ function App() {
               <Redirect to="/" />
             )}
           </>
-          <Route />
         </Switch>
       </ChakraProvider>
     </>

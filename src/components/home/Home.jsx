@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Login from "../login/Login";
 import Signup from "../signup/Signup";
 import { useHistory } from "react-router";
+
 
 function Home() {
   const userToken = JSON.parse(localStorage.getItem("user"));
@@ -25,14 +26,14 @@ function Home() {
         alignItems="center"
       >
         <Box>
-          <Text h="40" w="220" color="white" alignSelf="flex-start">
+          <Heading h="40" color="white" fontSize={["2x1","3x1","4x1","5xl"]}>
             Welcome to Covid-19 App
-          </Text>
+          </Heading>
         </Box>
-        <Box>
+        <Stack direction={["row"]} spacing="10">
           <Login />
           <Signup />
-        </Box>
+        </Stack>
       </Flex>
     </>
   );

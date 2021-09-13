@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { cleanDetail, detail } from "../../actions";
 import EditForm from "./EditForm";
-
+import { DETAIL } from "../../styles/styleConstants";
 
 function Detail() {
-
   const country = useSelector((state) => state.detail);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ function Detail() {
     if (!userToken) {
       push("/");
     }
-  }, [userToken,push]);
+  }, [userToken, push]);
 
   const goBack = () => {
     return push("/stats");
@@ -53,7 +52,7 @@ function Detail() {
         </Button>
         <Flex
           bgColor="#f5f3f4"
-          w={["90vw","80vw","70vw","50vw"]}
+          w={DETAIL.width}
           borderWidth="medium"
           borderRadius="2xl"
           border={"solid"}
@@ -68,7 +67,10 @@ function Detail() {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Stack direction={["column","column","column","row"]} alignItems={["center","center","space-around","center"]}  >
+            <Stack
+              direction={DETAIL.stackDirection}
+              alignItems={DETAIL.stackAlign}
+            >
               <Text
                 justifySelf="flex-start"
                 fontWeight="bold"
@@ -80,7 +82,10 @@ function Detail() {
 
               <EditForm />
             </Stack>
-            <Stack direction={["column","column","column","row"]} spacing={["20px","20px","20px","180px"]}>
+            <Stack
+              direction={DETAIL.stackDirection}
+              spacing={DETAIL.stackSpacing}
+            >
               <Text
                 fontSize="lg"
                 fontWeight="bold"
@@ -88,8 +93,7 @@ function Detail() {
                 w="160"
                 color="black"
               >
-                {" "}
-                Population: {country.population}{" "}
+                Population: {country.population}
               </Text>
               <Text
                 fontSize="lg"
@@ -109,24 +113,23 @@ function Detail() {
                 Cases
               </Text>
               <Flex alignItems="center" justifyContent="space-around">
-                <Stack >
+                <Stack>
                   <Text fontWeight="semibold">
-                    New: {country.cases.new || "any"}{" "}
+                    New: {country.cases.new || "any"}
                   </Text>
                   <Text fontWeight="semibold">
-                    Active: {country.cases.active || "any"}{" "}
+                    Active: {country.cases.active || "any"}
                   </Text>
                   <Text fontWeight="semibold">
-                    Critical: {country.cases.critical || "any"}{" "}
+                    Critical: {country.cases.critical || "any"}
                   </Text>
                 </Stack>
                 <Stack>
                   <Text fontWeight="semibold">
-                    {" "}
-                    Recovered:{country.cases.recovered || "any"}{" "}
+                    Recovered:{country.cases.recovered || "any"}
                   </Text>
                   <Text fontWeight="semibold">
-                    Total: {country.cases.total || "any"}{" "}
+                    Total: {country.cases.total || "any"}
                   </Text>
                 </Stack>
               </Flex>
@@ -144,7 +147,9 @@ function Detail() {
                 <Text fontWeight="semibold">
                   New: {country.deaths.new || " any"}
                 </Text>
-                <Text fontWeight="semibold">Total: {country.deaths.total || "any"}</Text>
+                <Text fontWeight="semibold">
+                  Total: {country.deaths.total || "any"}
+                </Text>
               </Stack>
             </Flex>
             <Flex

@@ -17,10 +17,12 @@ import { useDispatch } from 'react-redux'
 import { useHistory} from "react-router"
 import axios from "axios";
 import { login } from "../../actions";
+import { useToast } from "@chakra-ui/toast";
 
 function Signin() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef();
+  const toast = useToast();
 
   const dispatch = useDispatch();
   const { push } = useHistory();
@@ -44,7 +46,12 @@ function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(error.email || error.password){
-      return alert("should fill the input correctly")
+      return     toast({
+        title:"Error",
+        description: `you must fill the inputs correctly`,
+        isClosable:true,
+        status:"error"
+      })
     }else{
     /* const response = */ await axios.post("http://localhost:3001/api/auth/signup",input)
     const user = {
@@ -52,14 +59,19 @@ function Signin() {
       password: input.password
     }
     dispatch(login(user))
-    alert("the user has been created successfully")
+    toast({
+      title:"Your signup has been processed correctly",
+      description: `welcome to the covid 19 stats app`,
+      isClosable:true,
+      status:"success"
+    })
     return push("/stats")
     }
   };
 
   return (
     <>
-      <Button onClick={onOpen} m="10px" colorScheme="green">
+      <Button onClick={onOpen} colorScheme="green">
         signUp
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} colorScheme="blue">

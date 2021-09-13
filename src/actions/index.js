@@ -5,6 +5,7 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const DETAIL = "DETAIL";
 export const SEARCH_QUERY = "SEARCH_QUERY";
+export const CLEAR_STATISTICS = "CLEAR_STATISTICS";
 export const BASE_URL = "http://localhost:3001/api";
 
 const userToken = JSON.parse(localStorage.getItem("user"));
@@ -48,13 +49,15 @@ export const logOut = () => {
   };
 };
 
-export const search = async (query) => {
-  const response = await axios.get(`${BASE_URL}/statistics?query=${query}`, {
-    headers: {
-      authorization: `${userToken}`,
-    },
-  });
-  return response.data;
+export const search = (query) => {
+  return async (dispatch) => {
+    const response = await axios.get(`${BASE_URL}/statistics?query=${query}`, {
+      headers: {
+        authorization: `${userToken}`,
+      },
+    });
+    return dispatch({ type: SEARCH_QUERY, payload: response.data });
+  };
 };
 
 export const sync = () => {
@@ -93,5 +96,11 @@ export const updateCountry = (id, country) => {
       },
     });
     dispatch({ type: DETAIL, payload: response.data });
+  };
+};
+
+export const clearStatistics = () => {
+  return (dispatch) => {
+    dispatch({ type: CLEAR_STATISTICS, payload: null });
   };
 };

@@ -15,6 +15,7 @@ import {   Menu,
   MenuItem,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { HEADER } from "../../styles/styleConstants";
 
 function Header() {
   const user = useSelector((state) => state.loggedUser);
@@ -41,34 +42,38 @@ function Header() {
   const logout = () => {
     dispatch(logOut());
     localStorage.removeItem("user");
-    alert("logged out!");
+    toast({
+      title:"Log Out",
+      description: `good Bye ${user.name || user.userResponse.name}`,
+      isClosable:true,
+      status:"success"
+    })
     return push("/");
   };
   return (
-    <Flex className={styles.header} w={["140vw","120vw","120vw","100vw"]}>
+    <Flex className={styles.header} w={HEADER.width}>
       <Image
         src={
           "https://i1.wp.com/mrsvg.com/wp-content/uploads/edd/2021/03/virus.png?w=363&ssl=1"
         }
         h="80px"
-        w={["80px","100px","100px","120px"]}
+        w={HEADER.imageWidth}
         alt="img not found"
-        /* display={["none",,,"flex"]} */
       />
       
-      <Text display={["none",null,null,"flex"]} fontSize="x-large" color="white" alignSelf="center">
+      <Text display={HEADER.display} fontSize="x-large" color="white" alignSelf="center">
         welcome {(user.userResponse && user.userResponse.name) || user.name} !
       </Text>
-      <Text color="white"  fontSize={["medium","large","x-large","x-large"]} letterSpacing="wider">
+      <Text color="white"  fontSize={HEADER.fontSize} letterSpacing="wider">
         Covid-19 Stats
       </Text>
       
-      <Stack display={["none",null,null,"flex"]} direction={["row"]} spacing="80px">
+      <Stack display={HEADER.display} direction={["row"]} spacing="80px">
         <Button onClick={logout}>Logout</Button>
         <Button onClick={syncUp}>Sync</Button>
       <SearchBar />
       </Stack>
-      <Flex display={["flex",null,null,"none"]} justifyContent="space-between">
+      <Flex display={HEADER.flexDisplay} justifyContent="space-between">
         <Menu>
         <MenuButton as={IconButton} icon={<HamburgerIcon />}>
         </MenuButton>
