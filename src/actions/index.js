@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-  BASE_URL,
   CLEAR_STATISTICS,
   DETAIL,
   GET_ALL_STATISTICS,
