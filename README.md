@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Covid 19 Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+this is the client side or frontend to the covid 19 assessment, if you want to run this app locally you'll need to follow the next steps:
 
-## Available Scripts
+## get the backend
 
-In the project directory, you can run:
+you'll need to have the backend running on your device, for that you can follow the steps i wrote in the covid 19 api repo
 
-### `yarn start`
+this one ---------> https://github.com/17agustin/covid-19-assessment-api
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Clone
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+you must clone the repo locally
 
-### `yarn test`
+just run `git clone https://github.com/17agustin/covid-19-assessment-client.git `
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Install dependencies
 
-### `yarn build`
+Once you cloned the repo you must:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- run the comand  `npm install` or `yarn install`
+- this will install the node_modules you need
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Run the comand `npm start` or `yarn start`
+- this will open the app in "http://localhost:3000"
 
-### `yarn eject`
+## deploy
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I'm joyful to say that the complete app is actually deployed, so if you like you can just visit it:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+https://covid-19-assessment-client.vercel.app/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## further information
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+if you have any question do not doubt on cantact me via email, and if I can I'll help you
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+i hope you like it 
+Agustin😁
